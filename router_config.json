@@ -1,0 +1,57 @@
+{
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "clean_names": [
+    "card_arrival",
+    "card_not_working",
+    "declined_card_payment",
+    "pending_card_payment",
+    "reverted_card_payment?",
+    "lost_or_stolen_card",
+    "Refund_not_showing_up",
+    "request_refund",
+    "transaction_charged_twice",
+    "transfer_not_received_by_recipient"
+  ],
+  "intent_descriptions": [
+    "My new bank card has not arrived in the mail yet and I am tracking card delivery.",
+    "My physical or virtual card is broken, malfunctioning, or completely failing to work at terminals.",
+    "My card payment was declined or rejected at checkout when I tried to pay.",
+    "A card payment is still showing as pending or processing and has not settled yet.",
+    "A card payment was reverted, cancelled, or automatically reversed back to my account.",
+    "I lost my card or someone stole it and I need to freeze or replace it immediately.",
+    "I was promised a refund by a merchant but the refunded money is still not showing up in my balance.",
+    "I want to request a refund and get my money back for a purchase or service.",
+    "I was charged twice for the exact same transaction and see a duplicate charge on my statement.",
+    "I sent a bank transfer to someone, but the recipient has not received the money yet."
+  ],
+  "benchmark_summary": [
+    {
+      "Approach": "1. Zero-Shot NLI (DeBERTa-v3)",
+      "Labeled Data Needed": "0 shots",
+      "Macro F1": 0.5407,
+      "Inference Time (s)": 10.97,
+      "Tickets / Sec": 36.5
+    },
+    {
+      "Approach": "2. Zero-Shot Embedding Cosine Sim",
+      "Labeled Data Needed": "0 shots (descriptions)",
+      "Macro F1": 0.8641,
+      "Inference Time (s)": 0.22,
+      "Tickets / Sec": 1860.4
+    },
+    {
+      "Approach": "3. Frozen Embeddings + LogReg",
+      "Labeled Data Needed": "1497 tickets",
+      "Macro F1": 0.9699,
+      "Inference Time (s)": 0.26,
+      "Tickets / Sec": 1555.4
+    },
+    {
+      "Approach": "4. Generative LLM (FLAN-T5-base)",
+      "Labeled Data Needed": "0 shots (prompted)",
+      "Macro F1": 0.6451,
+      "Inference Time (s)": 9.64,
+      "Tickets / Sec": 41.5
+    }
+  ]
+}
